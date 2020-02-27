@@ -1,0 +1,965 @@
+    김종호 선생님( iadslba@naver.com )
+
+
+python core(crawling, marid db, mongo db)
+ -> numpy -> pandas -> scipy statatmodels -> scikits      ===> (1차 프로젝트)  (3주동안)
+
+tensorflow -> keras    ===( 2차프로젝트)
+
+
+ㅇvector에는 내적과 크기가 있음
+
+ㅇlist는 매개변수에 데이터를 전달할때, 데이터를 처리하고 return할때 사용
+
+ㅇ전처리 { 결측치 제거, 이상치 제거, 범주화, 정규화 } 
+  - 범주화 : 숫자가 아닌 것을 mapping을 하여 범주화함( 아름답다, 지저분하다 등 숫자(아스키코드)로 표현이 힘든 것 )
+               대부분의 분석이 범주에 관련됨
+  - 정규화 : 값의 크기가 다른 데이터를 비슷한 범위(0~1)로 만들어 비교하기 용이하게 함
+
+ㅇpython 자료구조 : list, dict, set, tuple
+ - 배열과 list의 차이 * 배열 : 메모리의 연속된 공간에 변수를 저장
+   - 데이터를 빠르게 처리하는데는 배열이 가장 빠름
+   - 메모리를 효율적으로 사용하는 것은 list ( 메모리 상에 다음 변수 주소를 지정하여 저장 )
+   - 배열 : 삽입, 삭제가 불편( 연속된 공간이기 때문)
+   - 리스트 : 삽입, 삭제가 용이( 중간에 변수를 삭제하더라도, 다음 주소를 지정 가능 ) 
+ - 배열은 요소를 찾으려하면 연속된 변수를 처음부터 찾아봐야하기때문에 비효율
+ - dict -> hash함수를 이용해서 저장할때부터 메모리 기억 주소(key)를 기억해서 데이터를 저장
+ - set -> key만 모아놓은 것( 중복 불허 )
+
+ㅇpython core 자료구조
+list , dict, set, tuple 
+[ ]  ,  { } , { } , ( )
+- tuple : list와 같은데, 수정이 불가능함 
+          - 자료 구조를 지정하지 않으면(괄호) dault가 tuple
+- python은 데이터타입을 지정하지 않음
+    - 자료구조가 포인터이기 때문
+    - 포인터 : 메모리에다가 data를  /// 
+
+* 메모리를 program 영역 heap 영역 stack 영역으로 나누고 함수 베이스로 작동하도록 함
+-> 호출 시 
+-> 주소만 메모리에 저장하고, 데이터를 다른 곳(heap- 메모리할당영역)에 저장함( 용량 때문 )
+-> 리턴 -> 삭제 -> 호출 -> 리턴 -> 삭제 
+
+
+ㅇ data type => 포인터이기때문에 설정 안함
+a = 10
+==> a라는 주소에 10이 저장된 영역에 대한 주소가 저장되어 있음
+
+==> 초기화가 반드시 필요함
+
+
+ㅇ database 
+  1. maria db   ==> linux 에서 실행할 것
+    - virtual box( 가상 컴퓨터 )안에다가 linux를 만들 것
+  2. mongo db ==> 분산처리
+
+ㅇ Anaconda prompt
+   -  
+
+ㅇ Overloading
+ - 함수 이름은 같은데, 매개변수의 data 타입이 다르거나 개수가 다르면 다른 함수로 인식
+ㅇ Overriding
+ - 상속 시 하위 클래스에서 재정의하여 사용하는 것
+
+
+
+ㅇ 입력      -      처리       -       출력
+
+    변수            연산자
+    배열            for,  if
+    리스트           함수
+
+ㅇ 함수를 쓰는 이유 : 
+ - code의 중복을 방지
+ - 소량의 메모리로 대용량의 데이터 처리( stack , heap )
+ 
+ㅇ 함수의 입력 : 매개변수
+ - 매개변수에서 (처리) 과정을 함
+ - 출력 : return
+ - return할 때, 처리한 데이터 등 다 사라짐( 적은 메모리로 대용량의 데이터 처리 방법 )
+
+ㅇ 매개변수의 종류 :
+ 1. required 매개변수 ( 순서, 반드시 지정해줘야함 )
+ 2. default 매개변수 ( 기본값으로 설정하여, required 되는 부분을 지정 안해도됨 )
+ 3. key 매개변수 ( key를 지정하여 순서를 바꿀 수 있음 ) => add(a = 10, b = 20)
+ 4. variable 매개변수 (변동매개변수) ( * : list , ** : dict )
+
+ㅇ return : 여러 개의 데이터 type을 리턴함
+
+
+
+ㅇ 객체지향  프로그래밍: data + 함수
+
+ㅇ 일반화 프로그래밍 : 대표타입 지정( 어느 데이터가 들어오더라도 다 쓸 수 있도록 지정 )
+   == template
+  - 파이썬에서는 template가 이미 적용됨( 데이터 타입 지정 할 필요가 없음 )
+
+ㅇ 함수화 프로그래밍  : ex) R에서 apply -- for문이 없는데, 반복으로 처리됨 
+  - for문과 함수를 적용함
+  - 병렬처리를 지원하여( CPU의 6코어 등 코어를 모두 사용하도록 함 ) 속도를 빠르게함
+
+ㅇ 프로그래밍 프로세스 :
+    CRUD => Create / Read / Updata / Delete
+
+ㅇ 파이썬의 함수 : 매개변수가 될 수도 있고, 데이터로 나갈 수도 있고, 리턴이 되기도함
+                       ==> 일급함수
+
+
+
+
+
+
+
+
+# 데이터를 입력받아
+# 삼각형의 넓이 
+# 사각형의 넓이
+# 원의 넓이를 계산하는 함수를 작성해 보세요
+
+wt = int(input("밑변의 길이를 입력하세요."))
+ht = int(input("높이의 길이를 입력하세요."))
+r = int(input("반지름을 입력하세요"))
+def tri(a,b) :
+    return wt * ht/2
+
+def sq(a,b) :
+    return wt * ht
+
+def cr(a) :
+    return r**math.pi
+
+print(tri(wt,ht))
+print(sq(wt,ht))
+print(cr(r))
+
+
+
+
+
+
+
+
+
+# 시간과 시간당 급여를 입력받아 주급을 계산하는 프로그램을 작성하시오
+# 조건 : 40시간이 넘으면 1.5배하여 지급한다.
+#  -> 매개변수 : 시간 , 시간당급여
+
+time = int(input("근무 시간을 입력하세요"))
+time_per_income = int(input("시간 당 급여를 입력하세요"))
+def income(a,b) :
+    result = (b*(a-40)*1.5 + b*40) if a>40 else b*(40-a)
+    return result
+income(time, time_per_income)
+
+
+
+
+ㅇ 프로그래밍 발달 순서
+ - 구조적 프로그래밍 -> 객체지향 프로그래밍 -> 일반화 프로그래밍 -> 함수화 프로그래밍( map, filter, reduce  -> 반복문과 함수를 적용 )
+  (변수 + 함수로 처리) -> ( Class ) -> ( Object )
+
+* object : class가 메모리에 자리를 자치하면 obect라고 함
+ 
+ㅇ class
+ - 캡슐화 : 변수 보호 ( 접근 지정자 설정 ) ==>  __(언더바 2개) 변수는 private 변수로, 외부에서 접근 불가
+    * 파이썬에서는 default로 public 설정이 되어 있음. private 설정은 __ 사용
+ - 추상화 : 함수에서 message를 전달하기때문에 변수 관리를 신경쓰지 않아도 됨 
+       - 1.  객체를 컴퓨터로 줄 때, 일부를 추상화시켜 변수화하여 저장 /  2.  클래스 안에 어떤 변수가 있는지 신경쓰지 않고, 클래스를 통해 함수를 사용하면됨
+ - 상속성 : class를 작성할 때, 공통 부분을 부모로 처리하고, 상속받는 자식 class에서는 공통 부분을 포함하거나 재정의를 하는 것이 가능함
+ - 다형성 : Overloading / Overriding  * 파이썬에서는 data type Overloading은 없고, 연산자 Overloading만 있음
+                  => 기본적으로 class를 만들면, object를 상속함 ( Method / 속성 )
+
+- __call__을 통해 class도 함수처럼 작동 가능
+ - class a :   
+          변수
+          함수
+          def 등
+ * class의 변수 or 함수 참고할 때 ,  a.함수(or 변수) 형태로 사용
+ - class를 사용자 정의 데이터 타입이라고함  ( 변수와 함수 등을 모아서 선언 )
+
+ * 요소 접근 방법 
+   list[ index ]
+   dict[ key ]
+   class.함수(or 변수)
+
+ - class 초기화 
+  => a = 10 처럼 변수 초기화 방법을 사용할 수 없음 -> 초기화 함수 사용 __init__() = '생성자'
+
+   - heap에 data가 만들어지는데,  참조가 사라지는 순간에 stack의 변수와 heap의 데이터가 사라짐 => 소멸자 불필요 ( java와 같음 )
+   - class 안에서 선언되는 모든 함수에서 첫 번째 인자는 항상 self를 사용 => 매개변수 개수로 count x
+   - 멤버 변수는 장소가 무관함 ( 실시간으로 멤버변수와 멤버함수를 추가시킬 수 있음 ), self를 항상 붙여야함
+
+ * 변수 
+  - class 변수  :  공유 변수  ( class 시작 지점에 만들어지는 변수 )
+  - member 변수  :  self ( class 안에서 함수가 종료되더라도 사라지지 않는 변수 )
+  - 지역 변수  :  self x  ( class 안에서 함수가 종료되면 사라지는 변수 ) 
+
+
+
+
+
+ㅇ Vector : 크기 + 방향
+         => 거리계산   내적( 두 벡터의 사이각과 같음 )
+
+ㅇ dot 연산 : 요소끼리 곱하고 모두 더함
+ex ) A = [10, 20 , 30 ]     B = [20 , 30 , 40]
+  A.B = 10*20    +   20*30   +   30*40          ==== |A| * |B| * cosO
+
+                 A.B
+cosO =  ㅡㅡㅡ
+              |A||B|
+
+
+
+
+ㅇ 창업을 할거면 프로그램이 80% 이상 만들어졌을 때 하세요~
+
+===========================================================================================
+Network / Database
+
+
+ㅇ OS  / Network / Database
+
+ㅇ OS ( Windows, Linux, iOS )
+   - Virtual Machine(VM) 가상 머신을 사용하여 windows에서 Linux를 설치 가능
+   - 대표적으로 VirtualBox를 설치해서 환경 구축
+   - Linux : file directory 관리 , 사용자 권한 관리 , Server service 제공 ( Web server , DB server, FTP server )
+       * 1.  Web server : html5에 의해서 동작
+ 
+          2.  DB server : Database를 저장 ( data 저장 2가지 방법 : file 저장 / db 저장 ) 
+              - DB를 사용하는 이유 : 파일을 관리하기 곤란 / 여러 사람이 사용하기 힘듬
+                  ==> 중복을 제거하고 공유를 위해 DB 사용
+              - DB server 종류 : Oracle / MSSQL / maria DB / Mysql 
+ 
+          3.  FTP server : 파일을 저장할 때, 빠른 속도, 공유 가능( git-hurb )
+
+
+                         -----------protocol(약속, 규약)----->
+            Server                                                                         Client
+                           <------------TCP/IP--------------
+                                                    ( IP가 필요 )
+ - TCP/IP 65536 개 ex) mariadb 3306번  /  webserver : 80번
+   ==> IP / Passward / Port 번호 제공해야 사용 가능
+   - IP 168. 126. 36. 1 => 8bit * 4 => 4bite
+
+컴퓨터에서 요청 => swich => router(공인 IP가 있음) => naver 요청 
+ 
+- maria db 
+  - primary key( 기본키 ) , foreign key( 외래키 )  ==> 중복을 제거하기 위해, 데이터를 찢어서 중복 제거 =====> 관계형 data base
+
+
+ㅇ 관계형 Database 
+- 중복방지 -> 정규화 ==> primary key 와 foreign key 로 데이터를 찢어 중복 방지
+- file 단점 극복 ( 공유 )
+- Trigger : 두 key 중 하나의 key가 사라지면 데이터의 무결성을 위해 둘다 사라짐
+- Event : 일정한 주기로 반복되는 명령을 설정해놓을 수 있음
+- View : 복잡한 select 문을 table로 취급함 ( 실제 물리적 table은 아님 )
+- Stored procedure : server에서 함수를 만들어 처리된 데이터만 가져옴 ==> traffic이 줄어듬
+
+- connect로 ip,port,id,passward를 넘겨줌
+-> query(질의 - update set, inset from 등 ) 처리 
+-> commit 실행 ( update set, insert from, delete는 db에 영향을 미치므로 commit 처리가 필요 ) ( select는 영향 x )
+-> recordset -> fetch ( 파이썬에서 사용가능하게 )
+
+
+
+-- 입력 ------------- 처리 ------------------- 출력
+create table                   updata                                        select
+                                         insert into
+                                         delete
+
+DDL ( data definition language ) - creat/ alter/drop ( db/ table 생성 ,추가 , 삭제 )  
+DML ( data management language ) - update  set, insert inot, delete form  , select
+DCL ( data control language ) - grant. revoke ( 읽기 권한, 쓰기 권한 등 권한 부여 ) 
+TCL ( transaction control language ) - transation / commit / savepoint / rollback 
+  ex ) ATM에서 돈을 뽑을 때, 기계에 돈이 부족하여 장부처리는 되었는데 돈이 안나올 때 전부 취소가 필요함 
+
+ㅇ mariadb  
+  - 연산자 : 산술연산자, 관계연산자 < > , 논리 연산자  ---  프로그램어와 똑같음
+  - 내장함수 : 수학함수(abs, round, sin, cos 등 ) ,
+                      문자열함수( 공백제거(trim), substring, concat 등 )
+                      시스템함수( row count - updata, insert, delete 를 통해 몇 행에 영향을 미쳤는지 파악 가능 )
+                                         ( found cound - select를 통해 몇 행에 영향을 미쳤는지 파악 )
+                      집계함수 ( sum , average  등 - select의 groubby 구문에 사용됨 )
+
+select 구문 : where 
+                      groubby
+                      having
+                      orderby
+                      limit 
+
+
+
+
+heidsql 실행
+ - primary key : 중복이 불가능, 외부에서 참조가 가능한 키
+
+
+
+
+ㅇ student에서 schoolcode를 school의 schoolcode와 연결시킴.
+ -> school의 addr 등 중복되는 데이터 줄이기 가능
+
+ㅇ pymysql을 통해 data를 가져옴
+  - data를 가져오기 위해, connect필요, cursor를 얻어야함
+  - cursor를 얻는다 : 서버측에 내가 처리할 data를 가리키고 있다.
+  - db에 영향을 미치는 명령(insert into / update set / delete from ) : commit이 필요함 
+  - recordset 형태로 만들어짐 : 파이썬에서 바로 사용 불가능 --> fetch를 통해 data를 가져와 처리함(one, many )
+  
+
+
+ㅇ flask 
+  - html5 css3 javascript를 이용해 페이지를 만듬 
+  - client에 가야할 data를 보여줌
+  - 3대 web framework : django , node.js ,spring?  ==> application server
+  - 실제web server : Apache(Linux에서 채택) / nginx(경량) / iis(MS에서 사용)
+  - webbrowser가 
+
+
+===========================================================================================Linux
+
+ㅇ 구글에 virtualbox 검색 -> 다운로드 -> windows hosts , all supported platform   ==> 실행 후 install( 계속 next )
+    -> extension pack -> 설치 -> 동의합니다 -> 설치
+- ( 윈도우 상에서 새로운 가상 머신을 설치할 수 있도록 해주는 것)
+- 오라클 db는 화면 제어가 안되니 화면 제어를 위해 설치
+
+     구글에 centㅐ os 검색 -> 다운로드 -> linux @@@ -> 네이버, 카카오 등 3개 중 아무거나
+- 서버용으로 제공되어지는 리눅스
+
+     구글에 heidsql 검색 -> 다운로드 -> installer, 32/64 bit combined   
+- 리눅스에 설치되는 마리아 db를 원격으로 작업하기 위해 필요
+
+- putty : 원격으로 리눅스를 제어하기 위해 필요
+
+ㅇ virtualbox -> 새로만들기 -> 이름 : jeju -> otherwindows 64비트로 함 -> 2048 memory로  -> 새 가상 하드디스크 만들기  ->  vdi 
+ -> 동적할당 -> 30G -> 만들기 -> 설정 -> 저장소 -> +버튼 광학드라이브추가 -> 추가 -> cento os 선택 -> 선택 -> 비어있음 삭제(X 아이콘)
+ -> 확인  ==> 시작(centOs dvd)
+-> 엔터( 설치 ) ->  한국어 -> 계속 진행 -> 설치목적지 -> 완료 -> 소프트웨어 선택 -> 서버GUI선택 -> 
+네트워크 파일 시스템 클라이언트 체크 / 기본 웹서버/  개발용툴/ 그래픽기반 관리툴/ 과학기술기원/ 시스템툴 / FTP서버 / 레거시 UXIX 호환성 / 보안툴 -> 완료 -> 설치 시작
+-> Root 암호 선택(acorn1234Q!) -> 완료 -> (설치 중) -> 설치 완료 후 시스템 전원끄기   ==> 시스 광하드디스크 체크 해제 -> 네트워크 어댑터 2 -> 어탭터 사용하기 -> 어댑터 브리지 -> 무작위모드 가상머신에 허용 -> 확인 -> 시작 
+* GUI 방식에서는 vtbox 장치 -> 게스트 확장 CD이미지 삽입 반드시 필요
+
+안되면 -> 새로만들기 -> 종류-> Linux -> other linux 64bit -> 위와 동일 -> 서버 0> 디버깅 툴  파일스토리지 / FTP / 네트워크 파일 시스템 클라이언트 / 기본웹서버 / 레거시 UXIX 호환성( 옛날 명령어 ) / 개발용 툴 / 시스템툴 / 보안툴 / 과학기술지원  -> 완료  -> 재부팅 -> 시스템 전원 끄기 - > 설정 -> 시스템 -> 광하드디스크 체크해제 -> 네트워크 어댑터 2 ~~~~
+->  시작
+
+집에서 사용법 => vtbox에서 파일 -> 가상시스템 내보내기 -> 복사 -> 집 컴퓨터에서 가상시스템 가져오기
+
+{
+커맨드에서 root
+ip 확인 : ip address show   ( 3번 째 192 168 1 215 )
+putty 실행  putty에 입력 
+shutdown -h now
+firewall-cmd --permanent --zone=public --add-port=22/tcp
+firewall-cmd --list-services
+
+systemctl start firewalld
+systemctl enable firewalld
+
+yum install openssh-client
+reboot
+}  안되는 부분
+
+
+여기서부터 설정
+{
+cd /etc
+cd sysconfig
+cd network-scripts
+vi ifcfg-eng0s3
+onboot = yes 설정 / DEVICE 한줄 엔터
+esc   +  :  + wq ( 저장 )  
+}
+
+* 7버전 다운로드 - centos 다운로드 - more download -> 7 버전 mirror -> 3개 중 아무거나 -> dvd iso 다운로드
+
+FTP서버 / mariadb db서버 / PostgreSQL 데이터 베이스 서버 / 호환성 라이브러리 / 개발용툴/ 보안툴/ 시스템관리도구 
+-> 설치시작 ->  재부팅 -> 라이센스 동의 -> 네트워크 호스트 이름 -> 이더넷 연결 켬 -> 완료 -> 설정 완료 
+다음 -> 키보드선택 다음 -> 위치정보 다음 -> 시간대 서울 다음 -> 계정연결 건너뛰기 ->  사용자 계정 생성 -> 다음 -> centos linux 시작
+
+help 닫기 -> 프로그램 -> 터미널 -> 명령어
+systemctl get-default -> systemctl set-default multi-user.target -> 인증 -> systemctl get-default (multi user target으로 변경됨 ) -> reboot -> 안되면 전원 클릭 후 다시시작
+-> 로그인 후 shutdown -h now -> 설정 -> 네트워크 어댑터2 ~~~~~ 고급 : 무작위모드 모두 허용 -> 확인 -> 시작
+-> 로그인 후 ifconfig -> ip 확인
+* startx를 입력하면 바탕화면 => application-> settings-> network -> enp0s3 off / enp0s8 on
+
+
+* 명령어 
+systemctl get-default        # 현재모드
+systemctl set-default multi-user.target    # 텍스트 모드로 바꿔줌
+reboot 
+shutdown -h now : 즉시 시스템을 종료
+ps -ef   # 현재 메모리에 실행되는 내용 확인 
+cd : change directory( 명령어 : 의미 )
+mkdir : make directory
+rmdir : remove directory
+cd ~ : root directory로 경로
+cp : copy ( 복사 )
+rm : remove ( 파일 삭제 )
+find / -name test.txt -print       : text.txt파일을 찾아서 print 명령
+vi : 명령행모드, 입력모드,  :( 실행명령)
+	명령행모드 : dd (삭제)  yy(복사)  p(붙여넣기)
+	입력모드 : i (insert) , a(append), o
+	:(실행명령) : q (종료) , w(저장), q!(저장하지않고 종료)
+
+yum : 패키지 설치 ( rpm을 래퍼하여 패키지를 쉽게 설치하도록 도와줌 )
+   ex) yum install maria-server
+# centOS 리눅스를 쓰는 이유 : 서버를 관리하기 위해서 ( text모드로 작업 )
+
+* 자주 쓰는 것 
+ systemctl    : 서비스제어
+ firewall-cmd    : 방화벽
+ systemctl start mariadb  : 마리아db 실행
+ systemctl stop mariadb : 마리아 db 종료
+ systemctl restart mariadb : 마리아 db 다시실행 ( setting이 변경되었을 때 )
+ ps -ef  |  grep httpd   : web server가 실행 중인지 확인할 때   ( grep : 검색명령 ) 
+
+
+
+
+
+*Maria DB 윈도우 설치
+- 구글에 mariadb 검색 -> mariadb foundation -> download -> 10.4.11 
+-> 설치 -> next -> root passward ( acorn1234Q! ) Enable 체크 , use UTP-8 체크-> enable feedback 체크 ㄴ 
+* HeidSQL 설치 
+- next next next  -> theme 설정 가능 
+
+
+
+putty -> new -> 이름변경 후 ip-> open -> 로그인 -> 
+ls : 현재디렉토리
+cd / : 루트 디렉토리  -> ls
+-> cd / etc -> vi resulv.conf  -> esc  +   :  + q!  == 저장하지않고 종료
+-> cd ~ : 홈디렉토리로 돌아옴 
+
+ㅇ 마리아db 설치 ( https://puttico.tistory.com/150 )
+yum install mariadb-server
+systemctl start mariadb
+systemctl status mariadb
+
+mysql -u root -p
+passward 입력
+===mariadb 접속
+
+show databases;
+grant all privileges on *.* to 'root'@'%' identified by 'hyeon0318!' with grant option;
+flush privileges;
+exit;
+
+firewall -cmd --permanent --zone=public --add-port=3306/tcp
+firewall-cmd --list-all ( port 개방 아직 안됨 )
+firewall-cmd --reload 
+firewall-cmd --list-all ( port 개방 완료 )
+systemctl restart firewalld
+systemctl enable mariadb  ( 다시 실행할때 자동으로 마리아db 오픈 )
+
+
+height sql에서 jeju.sql 불러오기
+
+jupyetlab에서 
+
+
+
+
+
+=============================================================================================
+
+
+numpy -> pandas -----> scipy/stats models -----> scikits ------------>  tensorflow ---------> keras
+-배열                    - optimization(최적화)        - muchine leaning        - deap learning
+                           - interlpolation(보강법)
+                           - intergrate(적분)
+                           - defferntial(미분)
+
+
+ㅇ numpy 
+ - 배열(array)
+ - 1차원 데이터: vector
+   2차원 데이터: matrix
+   3차원 데이터: tensor   
+ ===> 선형대수
+
+ - numpy도 하나의 언어( 자료구조, 연산자, 제어문 , 함수가 다 있음 (ndarray))
+     - for문을 없애서 자동으로 반복하도록 함 ( vector화 연산 = 일반적인 for문보다 100배 가량 빠름 )
+ - 행 중심으로 저장 ( 검색이 편리함 )
+ - 동질적인 데이터만 있어야함
+
+ㅇ pandas
+ - 열 중심으로 저장( 검색보다는 연산 위주 )
+ * 행중심과 열중심 중 연산 관련해서 열 중심이 5~10배 빠름
+ - 1차원 데이터: series
+   2차원 데이터: dataframe
+   3차원 데이터: panel
+ - series는 동질적인 데이터여야만 하고, dataframe은 이질적인 series가 와도 상관없음( seires가 모이면 dataframe ) 
+ - 작은 용량을 사용하기 위해 데이터타입을 나눔( ex)int8 / int16/ int 등 )
+ - shape, dtype, dimemtion -> data의 기본 정보 확보
+
+ㅇ model은 크게 4가지로 나뉨( 문제를 해결하는 방법이 4가지 )
+ 1. 정보기반학습 ( 선형회귀 , 상관분석 - 전제조건이 필요함 : 데이터가 독립성을 유지해야함(데이터직교) , 정규성 필요 ) 
+      ->   문제해결 -> dicision Tree( data의 열의 순서를 바꿔 들어가면 결과가 달라지고, 과적합이 발생함 )  
+      ->   문제해결 -> random Forest( 시간이 오래걸림 )  문제해결 -> adaBurst -> gradianBurst -> XG Burst
+==> one - hot encoding 필요
+
+ 2. 확률기반학습 ( Naive Bayes )
+ 3. 유사도기반학습 ( K-means -> target결정 , KNN , recommadation ) - 내적, 유사도 == 거리값에 따라 유사도 분류 및 추천
+ 4. 오차기반학습 ( ANN , SVM , 
+     - ANN은 최적화를 안하고, SVM은 ANN으로 찾은 데이터를 최적화를 하기때문에 SVM을 더 많이 씀
+===> 어떤게 높은 정확도를 보이는지 알 수 없어서 모두 해봐야함
+
+ㅇ 독립변수와 종속변수 간의 관계를 따지는 것 : 분석 
+  - 독립변수 간에 상관성이 있으면 종속변수에 크게 영향을 미침 => 상관성 제거 필요( 독립변수 하나 제거? )
+
+
+
+ㅇ 상관분석
+ 1. 공분산
+ 2. 상관계수
+ * 변수가 1개 일때, 분산, 2개일 때 상관분석을 하는 것.( 공분산 )
+ * 분산에서 제곱은 같은 변수 2개를 곱한 것과 마찬가지
+ * == 상관분석에서 공분산 : (x-x1)(y-y1)
+
+ * 상관분석( 공분산, 상관계수 )는 대칭행렬, 정방행렬임( 사각형 행렬 ) 
+
+
+역행렬 구하기 : 고유값분해( 정방행렬일 경우 ), SVD( 비정방행렬도 가능 )
+
+
+
+
+
+ㅇ matrix : vector를 모아놓은 것
+ - vector를 변환함
+ - maxtrix간의 곱셈은 특징 추출 , 차원 축소  (4x5) x (5x2) = (4x2) 
+ - scaling = [ k 0 ]
+                [ 0 k ]  ==> 크기를 키워줌
+ - rotation = [ c -s ]
+                 [ s  c ] ==> 회전 
+
+
+
+================================================================================================
+
+결정계수
+최소제곱법
+
+pandas 기능 : 
+
+ㅇ indexing에 사용
+indexing - key에 의한 indexing
+ => loc(key) , iloc사용(숫자)
+행 index = index
+열 index = columns
+값 = values
+
+ㅇ 전처리에 사용됨
+1. 결측치 제거( is.na , fill.na 등 )
+2. 이상치 처리 ( box )
+  - 3사분위수 - 1사분위수 = IQR
+  - IQR * 1.5 = 상한선
+           -1.5 = 하한선
+
+3. 범주화 ( Caterical )
+4. 정규화 ( nomalization ) 
+   - hyper parameter ( 사람이 결정해줘야 하는 변수 )
+      1. min -max 정규화
+      2. Z점수 정규화 ( 표준편차의 1배수에 68% / 2배수에 95% / 3배수에 99% 가 존재 )
+        -  평균 +- 2*표준오차 => 신뢰구간?
+        - Z점수 :   ( data - 평균 ) / 표준편차   ==> 표준정규분포의 확률값을 구할 수 있음
+      3. robust 정규화 : 3사분위수와 1사분위수를 이용하여 정규화
+      4. normalization : 방향값이 중요할 때 사용 
+        - 크기가 1인 벡터로 만듬( 방향값만 남음 ) 
+5. 시각화
+
+* 범주화 정규화는 pandas보다 scikits에서 더 유용한 함수가 많음
+
+ㅇ 데이터 요약 
+groupby, pivot, pivot_table, crosstabl 
+
+ㅇ 파일 관리
+ㅇ 데이터 타입 변환
+
+
+
+
+
+====================================================================================
+feature engineering
+
+- 전처리
+    - 결측치 ( 제거-drop.na , 평균-fill.na , 0- , 유사도-별도 패키지 )
+    - 이상치 ( IQR - filter의 boolean 인덱스 사용 ==>  대소비교( >or <)
+    - 범주화 ( categorical , get_dummies )
+    - 정규화 ( min-max 정규화 , Z점수 정규화-확률파악 , robust , normalization-크기1 )  
+    - 시각화 ( EDA )
+- 변환  : transformation
+  * r에서 dplyr (select , filter , groupby, aggregation , arrange 정렬)
+  * python에서 groupby , crosstab , pivot, pivot_table , sort_value(값으로 정렬), sort_index(column 이름으로 정렬)
+  * 파이썬에서 함수를 적용하는 함수 : 
+  * 계층형 인덱스 ( 엑셀에서 인덱스 안에 인덱스가 있는 것 처럼 )
+  - map  : series에서 요소별 적용
+  - apply :  열, 행 적용
+  - applymap : apply + map => 열 별로 각 요소에 적용 
+  
+
+
+
+====================================================================================
+
+scikits :  Muchine learning 
+ - 인터페이스의 일관성( 한 사람이 관리함 )
+ - estimator( 추정 )
+ - transformer 
+ - model을 만들지 않고, 이미 만들어진 것을 사용하고, 계수를 추정함
+
+문제해결
+ - simulation
+ - optimization ( 수리적으로 최적화 )
+ - data mining ( 데이터 속에서 규칙 발견 )  ==> scikit
+      - reneralization ( 일반화된 문제를 해결하는데 사용 )
+      - 과대적합 overfitting
+      - classification( 분류 )
+      - regression ( 예측 )
+      - clustering ( 군집 ) 
+
+ * model
+  - 정보기반 : dicision tree, randomforest , XG boost, stack model 
+  - 확률기반 : Naive Bays( text mining ) , 
+  - 유사도기반 : K-Means, KNN, recommodation
+  - 오차기반 : ANN , SVM
+
+
+
+model 만들기
+
+
+- 문제제기 --  데이터 수집  --  preprocessing --- learning --- evaluation --- predict
+                                          (전처리)           model          평가         분류,예측
+                                         - select
+                                      model_select( train_test_split, cross_val_score )
+                                      feature_select( RFE )
+                                      feature_extraction( FA , PCA , MDS )
+                                       
+logistic regression
+ -mse ( mean square error  = (실제값과 예측값의 차이)**2
+
+
+linear regression
+
+               
+
+
+pipeline : 
+  * chainning : 함수에서 .으로 계속해서 함수를 이어 사용할 수 있음 ( python core )
+
+GridsearchCV : 
+ - hyper parameter( model에 들어갈 매개변수 ) 
+ - 매개변수 조합을 자동으로 찾고, 어떤 조합이 좋은지 찾아줌
+
+Dicision Tree
+- 시각화 지원 ( white box)
+- 변수 중요도 출력( feature select 대신 사용 가능 )
+- 과적합 가능성 
+- 변수의 순서가 바뀌면 결과가 달라짐 
+
+conda install -c conda-forge graphviz
+conda install -c conda-forge python-graphviz
+conda install py-xgboost
+
+
+
+====================================================================
+
+vector 
+
+- 크기  :  kmeans :  
+	 - 활용용도 : 종속변수 결정 , 압축 , 원형 이상치 제거
+
+            knn : 하나의 점 근처에 있는 점의 그룹을 바탕으로 그룹을 결정
+
+- 방향  :  PCA : 상관계수와 공분산 계산( 다중공선성, 종속변수 영향을 알기 위함 )
+             - 활용용도 : 전처리 전단계에서 노이즈 제거 용도( IoT )
+            MDS(multi demention scale) : 시각화
+             - 다차원의 행렬을 2차원으로 만들어 표현( 내적0 )
+
+
+
+
+====================================================================
+2020.1.28
+신경망 학습  == 가중치 학습( 가중치는 행렬로 이루어짐 ) == 방정식의 계수를 구하는 것
+
+입력 data( 행렬로 이루어짐 )
+  - 행( 관측치 ) : Data Point ( 1인분에 대한 data )
+  - 열 : 변수
+
+입력 data(행렬)와 가중치(행렬)를 곱함 ==> 내적을 구함  ==> 투영을 함 ==> 데이터의 설명력을 표현할 수 있음
+- 가중치의 열이 1개일 때 : 회귀
+- 3개일 때 : 로지스틱 회귀
+- 행렬과 행렬의 곱은 선형
+==> 선형문제를 비선형으로 만들기 위해 activation 함수를 사용(활성함수)
+   * activation 함수 : sigmoid( 0~1 ), tanh( -1~1 ) , softmax
+    ==> 모든 연산이 끝나고 activation 함수를 사용함 ( 선형을 비선형으로 만들기 위해 / 회귀, 분류 구분 )
+
+- 가중치를 여러개로 만들어, XOR 문제를 해결
+   -- svm은 XOR 문제를 차원확장을 통해 해결
+   -- 텐서플로우는 가중치를 여러개 두어서 비선형으로 해결
+
+- ex) 변수가 500개에서 가중치 하나로(500x1) 계산하면 소실되는 변수가 너무 많음 
+       ==> 가중치를 여러개 두어서 해결  ==> 정확도가 높아짐
+
+
+- 예측 : 실제값 - 예측값을 통해 MSE를 구하여 초기 가중치를 옮기며 최적의 가중치를 구함
+- 분류 : 실제값 - 예측값으로 엔트로피를 구하여 최적의 가중치를 구함
+==> cost function를 사용하여 최적의 가중치 구함( https://bskyvision.com/411 )
+
+minibatch => 데이터를 잘라서 평균값으로 문제 해결( 지역해 문제 해결 가능 , 속도 상승 )
+
+- optimazor : learning rate, 기울기를 컨트롤함
+    - learning rate를 크게 설정하면, 빨리 학습함, 최적의 가중치값을 지나칠 수 있음
+    - 작게 설정하면 최적 가중치를 찾는데 너무 오래 걸림
+    - learning rate 조절 방법 : 맨 처음에 크게갔다가 점점 줄어듬 => 나중에 완전 소실해서 움직이지 않음
+         => 현재 이전 상태를 보고 적당하게 조절하는 것 등장 : adam optimazor
+
+
+
+
+- 분산처리 
+   - 병렬처리
+   - PC 분산
+
+CPU : 부동소수점 연산기 4~8개
+GPU : 1024개
+==> 데이터를 GPU에서 계산한 후, CPU로 옮기는 게 효율적 -> CUDA, cudnn를 사용하면 GPU에서 데이터 처리 가능
+
+- GPU
+  - 데이터 영역
+  - 프로그램 영역( 용량이 아주 작음 )
+  - constant(상수), variables(가중치), placeholder(주입변수)
+                                             - minibatch로 데이터를 받음
+  placeholder(데이터주입) ->  학습 -> 데이터 주입 -> 학습 ===> for문도 사용
+- session 연결로 GPU와 CPU 연결 가능
+
+minibatch 데이터 사이즈로 data 생성 -> Queue를 만들어 파일 생성,삭제 반복( 메모리 낭비 방지 )-> placeholder로 주입
+-> 학습 -> 
+
+
+
+- 신경망의 자료구조 : Graph
+  - Node(operator =계산기) , edge(노드와 노드 간 데이터를 주고 받을 때=> tensor로 처리(다차원배열) ==> 모든 결과가 tensor로 나옴)
+  - 한 Node가 계산되기 위해서는 연결된 모든 node들의 계산이 완료되어야 함
+
+
+
+=====================================================================================
+2020.01.29
+CNN( convolution Neural Network )    # 1. object detection   2. 분류   3. object recognition(차선인식)
+
+- 적분(면적) 연산 : 주변의 값을 고려함 => 특징을 잡아내기 위해서
+- 이미지에서는 픽셀 하나가 변수(100x100 => 10000개 변수)
+- 하나의 데이터가 한 줄로 들어감 => fully-connected  
+   ===> 이미지가 한줄로 나눠져서 들어가므로 특징을 잡아내기 어려움
+
+- 이미지를 flatten시켜 일렬 데이터로 만듬 => 이미지가 찢어져있으므로 특징 추출 불가
+ ==> 이미지에 filter를 적용하여
+       * filter 적용 : 3x3 / 5x5 등 같은 요소끼리 곱하여 더함  ( filter의 역할 : 어떻게하면 특징을 잘 찾을 수 있을 것인가 )
+         - 가운데 있는 요소에 대해 주변에 있는 요소끼리 곱하여 더함 -> 새로운 값으로 출력(픽셀1개)( 주변에 컬러값을 고려한 특징값으로 나옴)
+            ==> 주변의 값을 곱하여 더하므로 적분 연산과 마찬가지
+         - filter의 사이즈가 크면 큰 특징을, 작으면 미세한 특징을 찾아냄
+         - 100x100 사이즈에 3x3filter 적용 / 1번 행에서 100개 -> 98개가 생김 ==> 98x98
+           ==> 끝에 중요한 특징이 있을 수 있으므로, padding으로 주변을 채워 끝에 있는 이미지도 filter 적용함  # padding 옵션 : SAME / VALID
+- filter을 여러개 써서 여러 특징을 찾아냄 ==> channel이 증가함
+  - 어떤 filter가 잘 나오는지 알 수 없으므로, 학습 필요 => random초기화에서 점차 찾아감
+- pooling : 특징이 중복추출(3x3이 겹치는 부분이 생김)되기 때문에 특징을 줄여서 사이즈를 줄임
+  - max, avg 등 함수가 있음
+- stride : 특징을 추출할때 주변을 고려했기 때문에, 건너뛰면서 filter을 적용함(연산을 함)
+
+===> CNN의 역할 : 이미지의 특징 추출 
+* 이미지 -> CNN으로 특징 추출 -> flatten으로 일렬 데이터 -> FNN
+
+
+- 이미지는 기본적으로 3차원(가로, 세로, RGB)
+  - 컬러값이 중요하지 않은 이미지(형태가 중요한 이미지)는 흑백으로 바꿔 사이즈를 줄일 수 있음( 연산량이 줄어듬 )
+
+
+
+========================================================================================
+2020.1.31.
+RNN( Recurrent Neural Network )
+- 시차성이 있음
+- 순서가 있는 데이터, 시계열 데이터를 다룸
+
+
+  특징추출
+-   CNN ---- FFNN
+-   RNN ---- FFNN
+
+- Cell 을 여러 개 묶어서 연결시킴
+- 다음 단계에서 이전 가중치의 영향력을 고려 => 앞단에서 먼저 계산을 끝내야하기 때문에 지연시간(latent time) 발생
+- 가중치가 하나만 있으면 됨
+
+==> FFNN을 옆으로 확장한 것
+
+- 처음 나온 가중치가 끝까지 영향을 못미침
+- 가중치가 중복해서 영향을 미침
+===> LSTM(Long shot time moment) 
+      - 처음의 영향을 놓치지 않기 위해 state 선을 2개 만듬( control state, hidden state )
+      - state 2개에서 결과 2개를 내보냄( output : hidden state / 다음셀에 영향 : control state )
+      - forget gate / input gate / output gate
+      - forget gate : 앞단에서 온 Cell(t-1)을 잊을 것인지 남길 것인지 결정 
+      - input data를 통해 control state 제어
+      - 가중치가 4개 필요( gate 3개 + 전단계 출력 )
+
+==> forget과 input을 묶어 회로를 간략화함 update ( GRU )
+
+
+
+
+Bi-directional RNN : 양쪽 방향에서 특징을 뽑음
+
+Multi RNN : 다층으로 층을 쌓아 특징을 뽑음
+
+
+
+===================================================================================
+2020.02.03
+
+ㅇ 지도학습
+FFNN(전진 신경망)
+
+특징 추출                                        
+  CNN      ------------------                        
+(주변을 고려한 특징)
+  RNN      ------------------                             
+(순서를 고려한 특징)
+
+
+
+
+ㅇ 비지도학습
+ - Autoencoder - target : 자기자신    * 지도학습 target : 분류, 회귀 등
+ - Gan  -  
+
+입력데이터    특징            출력
+ㅇ                                 ㅇ
+ㅇ                0               ㅇ
+ㅇ                0               ㅇ
+ㅇ                                 ㅇ
+
+지도학습을 비지도 학습에 응용
+
+
+
+=================================================================================================
+keras - cnn
+
+- 주변에 요소를 고려해서 적분
+- filter , padding , stride , pooling 
+
+- filter size가 중요
+ ==> 크게하면  큰 특징 , 작게하면 작은 특징
+ ==> 크게하면 특징손실큼, 작게하면 깊게 가능   ( VGGNet 16, 19 )
+    
+
+=================================================================================================
+keras - rnn
+
+simple RNN -> LSTM-> GRU( 계산이 적음 , 빠름 )
+
+==> time series , text mining 을 대표적으로 다룰 수 있음
+
+- TimeDataGenerator : 매년도 총 매출액, 생산량, 이윤 등 데이터에 대해 자기상관성(시계열 데이터)를 판단함
+  -> 일정 기간의 데이터로부터 특정 해의 결과를 예측함
+   - 시계열 데이터는 정상성을 띤 데이터만 가능( 평균 일정, 분산 일정, 공분산 일정 - MA , AR , ARMA )
+     - 비정상성 데이터를 차분을 통해 정상성 데이터로 만듬( 뒤에 데이터에서 앞의 데이터를 뺌 ) == 미분의 의미가 있음
+       => ARIMA를 만들어 비정상성을 띤 데이터의 시계열 분석을 가능하도록함
+
+LSTM + ATTENTION => NMT
+ATTENTION 망으로만 깊게 진행 => TRANSFORMER => BERT
+
+
+===> seq2seq로 할 수 있는 것
+1. translation
+2. chatbot
+3. summarization
+
+
+seq2seq에서 발전 -> NMT -> BERT
+
+
+
+
+===================================
+keras
+
+ㅇbackend 
+ - tensorflow
+ - CNTK - (MS)
+ - Theano
+==> 중에 하나를 backend로 취함  wrapper시킴
+
+
+* tensorflow에서 constand  -  variables  -   placeholder
+                                      (가중치)       (데이터 주입)
+                  ==> 행렬연산 ( 오차기반학습 )
+                        - 분류 or 예측( for문을 활용하여 epoch, batch size 등 설정 반복)
+                        - loss function, activation 함수, optimizer
+                        
+                     => compile 과정을 통해 backend(여기서는 tensorflow)를 fit함( 위 과정 한번에 해결)
+                     => Model은 layer방식으로 만들어짐 
+		    => add 함수를 통해 자동으로 추가 가능
+                            => return 과정을 생략함( chaining을 통해 계산 결과가 다음 입력으로 바로 들어감 )
+                            * Dense : 출력, 입력 차수만 넣어주면 가중치를 자동으로 만들어줌
+                            ==> 가중치 선언과 return 과정 불필요 ( 출력차수만 지정하면 됨 ) ( 입력은 이전 레이어에서 계산되어 들어옴 )
+
+ㅇ케라스에서 모델을 만드는 3가지 방법
+- sequence : 싱글 input 싱글 out
+- function : 멀티 input 멀티 out( ex)한쪽 데이터는 이미지, 한쪽 데이터는 텍스트 => 이미지를 텍스트로 번역하는 망 )
+- model : 상속을 받아서 다양하게 사용 가능( class base )
+
+ㅇ행렬 연산에 필요한 것을 layer로 만듬
+=> input  , dense , CNN , RNN
+ ex) input으로 데이터를 받고 dense로 가중치를 주면 ==> 회귀 => compile ( 케라스로 만들어진 구조를 tensorflow로 바꿔줌)
+                                                                                    * loss activation optimizer을 compile의 매개변수로 넣어줌
+
+ㅇsklearn에 영향을 받아서
+데이터를 입력받고, epoch, batch size , valudation data(검증용 데이터)를 fit에 넣어주면 fit함수가 모델에 넣어줌
+
+evaluater ( test 데이터를 넣으면 자동으로 모델을 호출하여 결과 출력)
+predict ( 실제 사용할 데이터를 넣으면 결과 출력 )
+
+ㅇ scikit과 연결
+- classifier , regressor 를 이용해서 cnn , rnn 등 
+- pipeline , gridsearchcv 사용 가능 => loss activation 등 hyperparameter를 자동으로 tuning
+
+
+transfer learning ( 전이 학습 ) 
+- 처음부터 가중치를 학습시키기는 오래걸리므로 pre- training을 통해 가중치를 어느정도 학습시킴
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

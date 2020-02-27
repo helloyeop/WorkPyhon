@@ -1,0 +1,18 @@
+import pandas
+
+dt_index = pandas.date_range(start='20160901', end='20161031')
+# pandas.date_range(start='20160901', end='20161031',freq='W-MON')
+# 을 하면 해당 기간 매주 월요일들만 추출합니다.
+
+# type(dt_index) => DatetimeIndex
+# DatetimeIndex => list(str)
+dt_list = dt_index.strftime("%Y%m%d").tolist()
+
+for i in dt_list:
+    print(i)
+
+
+
+
+https://wikidocs.net/24603 - 코사인 유사도 ( 영화 제목 바탕으로 자연어 처리 )
+
